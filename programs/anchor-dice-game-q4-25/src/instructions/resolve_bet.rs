@@ -94,8 +94,7 @@ impl<'info> ResolveBet<'info> {
                 to: self.player.to_account_info()
             };
 
-            let seeds = [b"vault", &self.house.key().to_bytes()[..], &[bumps.vault]];
-            let signer_seeds = &[&seeds[..]][..];
+            let signer_seeds: &[&[&[u8]]] = &[&[b"vault", &self.house.key().to_bytes(), &[bumps.vault]]];
     
             let ctx = CpiContext::new_with_signer(
                 self.system_program.to_account_info(),

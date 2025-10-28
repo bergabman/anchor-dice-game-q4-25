@@ -1,6 +1,7 @@
 use anchor_lang::prelude::*;
 
 #[account]
+#[derive(InitSpace)]
 pub struct Bet {
     pub player: Pubkey,
     pub seed: u128,
@@ -11,7 +12,6 @@ pub struct Bet {
 }
 
 impl Bet {
-    pub const LEN: usize = 8 + 32 + 16 + 8 + 8 + 1 + 1;
 
     pub fn to_slice(&self) -> Vec<u8> {
         let mut s = self.player.to_bytes().to_vec();
